@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <form class = "" action ="/predict" method="POST">
+         <div>
+            <input type="file" name="file" value="">
+            <input type="submit" name="submit_button" value="Submit">
+         </div>
+      </form>
+      <div>
+         {% if response %}
+            {{ response }}
+         {% endif %}
+      </div>
+   </body>
+</html>

@@ -44,7 +44,7 @@ def preprocessing_ML(path): # return_date 형태는 '2021-01-05', ''포함해 �
     DF_growth['Date'] = modify_date(DF_growth)
     
     DF_env['Date'] = pd.to_datetime(DF_env['Date'])
-    DF_env['Carbon'] = DF_env['Carbon'].apply(lambda x: x * 10000)
+    #DF_env['Carbon'] = DF_env['Carbon'].apply(lambda x: x * 10000)
     
     DF_growth['Date'] = pd.to_datetime(DF_growth['Date'])
     DF_env=DF_env.set_index('Date').sort_index()
@@ -160,7 +160,7 @@ def predict():
         path1 = request.files['file']
     except TypeError:
         print("Error!, 400",file=sys.stdout)
-    path2 = '/home/ubuntu/Source_flask/Past_Data_strawberry.xlsx'  
+    path2 = '/home/ubuntu/Source_flask/E_22_23.xlsx'  
     model_path = '/home/ubuntu/Source_flask/Final_LSTM.hdf5'
     scaler_path = '/home/ubuntu/Source_flask/scaler.joblib'  
     previous_data, start_date,size, return_date = preprocessing_ML(path1)

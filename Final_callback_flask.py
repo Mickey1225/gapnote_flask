@@ -171,6 +171,7 @@ def predict():
     try: 
         response = model.prediction_output(final_DF,length,size,return_date)
         print("Success!, 200")
+        return response
     except:
         return Response({"status":400,"message":"err"})
         

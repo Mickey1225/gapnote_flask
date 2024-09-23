@@ -12,7 +12,7 @@ import json
 import os
 #from sklearn.externals import joblib
 warnings.filterwarnings(action='ignore')
-from flask import Flask,request,render_template,jsonify,redirect,url_for,make_response
+from flask import Flask,request,render_template,jsonify,redirect,url_for,make_response,Response
 
 def modify_date(df):
     if pd.api.types.is_int64_dtype(df['Date'][0]):

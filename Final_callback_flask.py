@@ -172,8 +172,7 @@ def predict():
         response = model.prediction_output(final_DF,length,size,return_date)
         print("Success!, 200")
     except:
-        print("Error!, 500")
-    return response
+        return Response({"status":400,"message":"err"})
         
     #return response
     #return make_response(jsonify(response),200)

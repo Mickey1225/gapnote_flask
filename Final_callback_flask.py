@@ -158,22 +158,23 @@ def index():
 def predict():
     try:
         path1 = request.files['file']
-    except TypeError:
-        print("Error!, 400",file=sys.stdout)
-    path2 = '/home/ubuntu/Source_flask/E_22_23.xlsx'  
-    model_path = '/home/ubuntu/Source_flask/Final_LSTM.hdf5'
-    scaler_path = '/home/ubuntu/Source_flask/scaler.joblib'  
-    previous_data, start_date,size, return_date = preprocessing_ML(path1)
-    now_data = preprocessing_ML2(path2,start_date)
-    final_DF = pd.concat([previous_data,now_data]).sort_index()
-    length = len(final_DF)-2
-    model = prediction(model_path,scaler_path)
-    try: 
+        path2 = '/home/ubuntu/Source_flask/E_22_23.xlsx'  
+        model_path = '/home/ubuntu/Source_flask/Final_LSTM.hdf5'
+        scaler_path = '/home/ubuntu/Source_flask/scaler.joblib'  
+        previous_data, start_date,size, return_date = preprocessing_ML(path1)
+        now_data = preprocessing_ML2(path2,start_date)
+        final_DF = pd.concat([previous_data,now_data]).sort_index()
+        length = len(final_DF)-2
+        model = prediction(model_path,scaler_path)
         response = model.prediction_output(final_DF,length,size,return_date)
-        print("Success!, 200")
-        return response
-    except:
+        if len(response) == 0:
+            return Response({"status":400,"message":"err"})
+        else: 
+            print(response)
+            return response
+    except TypeError:
         return Response({"status":400,"message":"err"})
+
         
     #return response
     #return make_response(jsonify(response),200)
